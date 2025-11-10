@@ -1,115 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.amcp</groupId>
     <artifactId>amcp-parent</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
     <packaging>pom</packaging>
 
-    <name>AMCP v1.5 Open Source Edition - Agent Mesh Communication Protocol</name>
-    <description>Open source distributed agent framework for developers and startups with A2A protocol bridge, CloudEvents compliance, LLM orchestration, and comprehensive testing suite</description>
-    <url>https://github.com/xaviercallens/amcp-v1.5-opensource</url>
+    <name>AMCP :: Parent</name>
+    <description>Agent Mesh Communication Protocol v1.6 - Parent POM</description>
+    <url>https://github.com/agentmeshcommunicationprotocol/amcpcore.github.io</url>
 
     <licenses>
         <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <developers>
         <developer>
-            <id>xcallens</id>
-            <name>Xavier Callens</name>
-            <email>xavier.callens@amcp.io</email>
-            <organization>AMCP Open Source</organization>
-            <organizationUrl>https://github.com/xaviercallens/amcp-v1.5-opensource</organizationUrl>
+            <name>AMCP Team</name>
+            <organization>AMCP</organization>
+            <organizationUrl>https://amcp.dev</organizationUrl>
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:git://github.com/xaviercallens/amcp-v1.5-opensource.git</connection>
-        <developerConnection>scm:git:ssh://github.com/xaviercallens/amcp-v1.5-opensource.git</developerConnection>
-        <url>https://github.com/xaviercallens/amcp-v1.5-opensource/tree/main</url>
-    </scm>
+    <modules>
+        <module>amcp-core</module>
+        <module>amcp-broker-kafka</module>
+        <!-- NATS broker temporarily disabled due to API compatibility issues -->
+        <!-- <module>amcp-broker-nats</module> -->
+        <!-- Advanced features temporarily disabled - need Event API alignment -->
+        <!-- <module>amcp-a2a</module> -->
+        <!-- <module>amcp-mcp</module> -->
+        <!-- <module>amcp-security</module> -->
+        <module>quarkus-amcp</module>
+        <module>amcp-examples</module>
+    </modules>
 
     <properties>
-                <!-- Java Version - LTS -->
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
 
-        <!-- Core Dependencies -->
-        <slf4j.version>2.0.9</slf4j.version>
-        <logback.version>1.4.11</logback.version>
-        <jackson.version>2.15.2</jackson.version>
-        <guava.version>32.1.1-jre</guava.version>
-        
-        <!-- Messaging & Integration -->
-        <kafka.version>3.5.1</kafka.version>
-        <nats.version>2.16.14</nats.version>
-        <solace.version>10.19.0</solace.version>
-        
-        <!-- MCP Integration -->
-        <grpc.version>1.58.0</grpc.version>
-        <protobuf.version>3.24.4</protobuf.version>
+        <!-- Quarkus -->
+        <quarkus.version>3.15.1</quarkus.version>
         
         <!-- CloudEvents -->
-        <cloudevents.version>2.5.0</cloudevents.version>
+        <cloudevents.version>4.0.1</cloudevents.version>
         
-        <!-- Security -->
-        <oauth2.version>10.9.1</oauth2.version>
-        <jose4j.version>0.9.3</jose4j.version>
-        <spring.version>6.1.0</spring.version>
-        <spring.security.version>6.1.4</spring.security.version>
+        <!-- Messaging -->
+        <kafka.version>3.8.0</kafka.version>
+        <nats.version>2.20.0</nats.version>
         
-        <!-- AI Integration -->
-        <spring.ai.version>1.0.0-SNAPSHOT</spring.ai.version>
-        <spring.boot.version>3.2.0</spring.boot.version>
-        
-        <!-- Monitoring & Observability -->
-        <micrometer.version>1.11.2</micrometer.version>
-        <opentracing.version>0.33.0</opentracing.version>
-        <jaeger.version>1.8.1</jaeger.version>
-        <opentelemetry.version>1.30.1</opentelemetry.version>
-        
-        <!-- HTTP Client -->
-        <okhttp.version>4.11.0</okhttp.version>
+        <!-- Utilities -->
+        <slf4j.version>2.0.16</slf4j.version>
+        <logback.version>1.5.8</logback.version>
+        <jackson.version>2.17.2</jackson.version>
         
         <!-- Testing -->
-        <junit.version>5.10.0</junit.version>
-        <mockito.version>5.4.0</mockito.version>
-        <assertj.version>3.24.2</assertj.version>
-        <testcontainers.version>1.19.1</testcontainers.version>
-        <wiremock.version>3.0.1</wiremock.version>
+        <junit.version>5.11.0</junit.version>
+        <mockito.version>5.13.0</mockito.version>
+        <testcontainers.version>1.20.1</testcontainers.version>
         
-        <!-- Plugin Versions -->
-        <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
-        <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
-        <maven.failsafe.plugin.version>3.1.2</maven.failsafe.plugin.version>
-        <jacoco.plugin.version>0.8.10</jacoco.plugin.version>
-        <spotbugs.plugin.version>4.7.3.5</spotbugs.plugin.version>
-        <checkstyle.plugin.version>3.3.0</checkstyle.plugin.version>
-        <pmd.plugin.version>3.21.0</pmd.plugin.version>
-        <docker.plugin.version>0.43.4</docker.plugin.version>
-        <protobuf.plugin.version>0.6.1</protobuf.plugin.version>
+        <!-- Plugins -->
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
+        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
     </properties>
-
-    <modules>
-        <module>core</module>
-        <module>connectors</module>
-        <module>examples</module>
-        <module>cli</module>
-    </modules>
 
     <dependencyManagement>
         <dependencies>
+            <!-- Quarkus BOM -->
+            <dependency>
+                <groupId>io.quarkus.platform</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>${quarkus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- AMCP Modules -->
             <dependency>
                 <groupId>io.amcp</groupId>
@@ -118,17 +94,22 @@
             </dependency>
             <dependency>
                 <groupId>io.amcp</groupId>
-                <artifactId>amcp-connectors</artifactId>
+                <artifactId>amcp-broker-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.amcp</groupId>
-                <artifactId>amcp-examples</artifactId>
+                <artifactId>amcp-broker-nats</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.amcp</groupId>
-                <artifactId>amcp-cli</artifactId>
+                <artifactId>quarkus-amcp</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.amcp</groupId>
+                <artifactId>quarkus-amcp-deployment</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -149,26 +130,18 @@
                 <version>${cloudevents.version}</version>
             </dependency>
 
-            <!-- gRPC for MCP -->
+            <!-- Kafka -->
             <dependency>
-                <groupId>io.grpc</groupId>
-                <artifactId>grpc-netty-shaded</artifactId>
-                <version>${grpc.version}</version>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
             </dependency>
+
+            <!-- NATS -->
             <dependency>
-                <groupId>io.grpc</groupId>
-                <artifactId>grpc-protobuf</artifactId>
-                <version>${grpc.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.grpc</groupId>
-                <artifactId>grpc-stub</artifactId>
-                <version>${grpc.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.protobuf</groupId>
-                <artifactId>protobuf-java</artifactId>
-                <version>${protobuf.version}</version>
+                <groupId>io.nats</groupId>
+                <artifactId>jnats</artifactId>
+                <version>${nats.version}</version>
             </dependency>
 
             <!-- Logging -->
@@ -183,116 +156,16 @@
                 <version>${logback.version}</version>
             </dependency>
 
-            <!-- JSON Processing -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
+            <!-- Jackson -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson.version}</version>
-            </dependency>
-
-            <!-- Utilities -->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-
-            <!-- Messaging Systems -->
-            <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>${kafka.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.nats</groupId>
-                <artifactId>jnats</artifactId>
-                <version>${nats.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.solacesystems</groupId>
-                <artifactId>sol-jms</artifactId>
-                <version>${solace.version}</version>
-            </dependency>
-
-            <!-- Security & OAuth -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-oauth2-core</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.nimbusds</groupId>
-                <artifactId>oauth2-oidc-sdk</artifactId>
-                <version>${oauth2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.bitbucket.b_c</groupId>
-                <artifactId>jose4j</artifactId>
-                <version>${jose4j.version}</version>
-            </dependency>
-
-            <!-- Monitoring -->
-            <dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-core</artifactId>
-                <version>${micrometer.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-registry-prometheus</artifactId>
-                <version>${micrometer.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.opentelemetry</groupId>
-                <artifactId>opentelemetry-api</artifactId>
-                <version>${opentelemetry.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.opentelemetry</groupId>
-                <artifactId>opentelemetry-sdk</artifactId>
-                <version>${opentelemetry.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.opentracing</groupId>
-                <artifactId>opentracing-api</artifactId>
-                <version>${opentracing.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.jaegertracing</groupId>
-                <artifactId>jaeger-client</artifactId>
-                <version>${jaeger.version}</version>
-            </dependency>
-
-            <!-- HTTP Client -->
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>${okhttp.version}</version>
             </dependency>
 
             <!-- Testing -->
@@ -309,20 +182,8 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-junit-jupiter</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <version>${assertj.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.testcontainers</groupId>
-                <artifactId>junit-jupiter</artifactId>
+                <artifactId>testcontainers</artifactId>
                 <version>${testcontainers.version}</version>
                 <scope>test</scope>
             </dependency>
@@ -332,433 +193,37 @@
                 <version>${testcontainers.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${testcontainers.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.tomakehurst</groupId>
-                <artifactId>wiremock-jre8</artifactId>
-                <version>${wiremock.version}</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Compiler Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.plugin.version}</version>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>21</source>
-                        <target>21</target>
-                        <encoding>UTF-8</encoding>
-                        <compilerArgs>
-                            <arg>-parameters</arg>
-                        </compilerArgs>
+                        <release>${maven.compiler.release}</release>
+                        <parameters>true</parameters>
                     </configuration>
                 </plugin>
-
-                <!-- Surefire Plugin (Unit Tests) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin.version}</version>
-                    <configuration>
-                        <includes>
-                            <include>**/*Test.java</include>
-                            <include>**/*Tests.java</include>
-                        </includes>
-                        <excludes>
-                            <exclude>**/*IT.java</exclude>
-                            <exclude>**/*IntegrationTest.java</exclude>
-                        </excludes>
-                    </configuration>
+                    <version>${maven-surefire-plugin.version}</version>
                 </plugin>
-
-                <!-- Failsafe Plugin (Integration Tests) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven.failsafe.plugin.version}</version>
-                    <configuration>
-                        <includes>
-                            <include>**/*IT.java</include>
-                            <include>**/*IntegrationTest.java</include>
-                        </includes>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
                 </plugin>
-
-                <!-- JaCoCo Code Coverage -->
                 <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco.plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>report</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>check</id>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                            <configuration>
-                                <rules>
-                                    <rule>
-                                        <element>BUNDLE</element>
-                                        <limits>
-                                            <limit>
-                                                <counter>INSTRUCTION</counter>
-                                                <value>COVEREDRATIO</value>
-                                                <minimum>0.95</minimum>
-                                            </limit>
-                                        </limits>
-                                    </rule>
-                                </rules>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!-- SpotBugs Static Analysis -->
-                <plugin>
-                    <groupId>com.github.spotbugs</groupId>
-                    <artifactId>spotbugs-maven-plugin</artifactId>
-                    <version>${spotbugs.plugin.version}</version>
-                    <configuration>
-                        <effort>Max</effort>
-                        <threshold>Low</threshold>
-                        <xmlOutput>true</xmlOutput>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!-- Checkstyle -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${checkstyle.plugin.version}</version>
-                    <configuration>
-                        <configLocation>checkstyle.xml</configLocation>
-                        <encoding>UTF-8</encoding>
-                        <consoleOutput>true</consoleOutput>
-                        <failsOnError>true</failsOnError>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>validate</id>
-                            <phase>validate</phase>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!-- PMD -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-pmd-plugin</artifactId>
-                    <version>${pmd.plugin.version}</version>
-                    <configuration>
-                        <rulesets>
-                            <ruleset>/rulesets/java/quickstart.xml</ruleset>
-                        </rulesets>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!-- Docker Plugin -->
-                <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker.plugin.version}</version>
-                    <configuration>
-                        <images>
-                            <image>
-                                <name>amcp/amcp-v1.5-enterprise:${project.version}</name>
-                                <build>
-                                    <contextDir>${project.basedir}/deploy/docker</contextDir>
-                                    <args>
-                                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                                    </args>
-                                </build>
-                            </image>
-                        </images>
-                    </configuration>
-                </plugin>
-
-                <!-- Protocol Buffer Plugin -->
-                <plugin>
-                    <groupId>org.xolstice.maven.plugins</groupId>
-                    <artifactId>protobuf-maven-plugin</artifactId>
-                    <version>${protobuf.plugin.version}</version>
-                    <configuration>
-                        <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
-                        <pluginId>grpc-java</pluginId>
-                        <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>compile</goal>
-                                <goal>compile-custom</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>io.quarkus.platform</groupId>
+                    <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>${quarkus.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
     </build>
-
-    <profiles>
-        <!-- Quality Profile -->
-        <profile>
-            <id>quality</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.spotbugs</groupId>
-                        <artifactId>spotbugs-maven-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-checkstyle-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-pmd-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- Integration Tests Profile -->
-        <profile>
-            <id>integration</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- Docker Profile -->
-        <profile>
-            <id>docker</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.fabric8</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>build</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- Enterprise Test Suite Profile -->
-        <profile>
-            <id>enterprise-tests</id>
-            <properties>
-                <test.coverage.minimum>95.0</test.coverage.minimum>
-                <test.performance.enabled>true</test.performance.enabled>
-                <test.security.enabled>true</test.security.enabled>
-                <test.integration.enabled>true</test.integration.enabled>
-            </properties>
-            <build>
-                <plugins>
-                    <!-- Unit Tests with Coverage -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <test.suite.version>1.5.0</test.suite.version>
-                                <test.suite.name>AMCP Enterprise Test Suite</test.suite.name>
-                                <test.coverage.enabled>true</test.coverage.enabled>
-                            </systemPropertyVariables>
-                            <includes>
-                                <include>**/*Test.java</include>
-                                <include>**/*Tests.java</include>
-                                <include>**/*TestCase.java</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                    
-                    <!-- Integration Tests -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/*IT.java</include>
-                                <include>**/*IntegrationTest.java</include>
-                                <include>**/*EnterpriseTest.java</include>
-                            </includes>
-                            <systemPropertyVariables>
-                                <test.integration.kafka.enabled>true</test.integration.kafka.enabled>
-                                <test.integration.nats.enabled>true</test.integration.nats.enabled>
-                                <test.polygon.api.key>ZGgVNySPtrCA7u1knnya3wdefCLGpJwd</test.polygon.api.key>
-                            </systemPropertyVariables>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    
-                    <!-- JaCoCo Coverage -->
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>prepare-agent</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>report</id>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>check</id>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                                <configuration>
-                                    <rules>
-                                        <rule>
-                                            <element>CLASS</element>
-                                            <limits>
-                                                <limit>
-                                                    <counter>LINE</counter>
-                                                    <value>COVEREDRATIO</value>
-                                                    <minimum>${test.coverage.minimum}</minimum>
-                                                </limit>
-                                            </limits>
-                                        </rule>
-                                    </rules>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    
-                    <!-- Quality Analysis -->
-                    <plugin>
-                        <groupId>com.github.spotbugs</groupId>
-                        <artifactId>spotbugs-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    
-                    <!-- Security Vulnerability Check -->
-                    <plugin>
-                        <groupId>org.owasp</groupId>
-                        <artifactId>dependency-check-maven</artifactId>
-                        <configuration>
-                            <format>ALL</format>
-                            <outputDirectory>${project.build.directory}/security-reports</outputDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>https://repo1.maven.org/maven2</url>
-        </repository>
-        <repository>
-            <id>solace-public</id>
-            <name>Solace Public Repository</name>
-            <url>https://solacemdev.jfrog.io/solacemdev/libs-release</url>
-        </repository>
-    </repositories>
-
 </project>

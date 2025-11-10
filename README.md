@@ -1,437 +1,347 @@
-# AMCP v1.5 Open Source Edition
+# AMCP v1.6 - Agent Mesh Communication Protocol
 
-<div align="center">
-
-![AMCP Logo](https://img.shields.io/badge/AMCP-v1.5-blue?style=for-the-badge)
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Java 21](https://img.shields.io/badge/Java-21-orange?style=for-the-badge)](https://openjdk.org/projects/jdk/21/)
-[![Build Status](https://img.shields.io/github/workflow/status/xaviercallens/amcp-v1.5-opensource/CI?style=for-the-badge)](https://github.com/xaviercallens/amcp-v1.5-opensource/actions)
-
-**The Future of Multi-Agent Systems is Here**
-
-*Enterprise-grade mobile agent framework with LLM orchestration, now open source*
-
-[🚀 Quick Start](#-quick-start) • [📚 Documentation](#-documentation) • [🏗️ Architecture](#️-architecture) • [🎯 Examples](#-examples) • [🤝 Contributing](#-contributing)
-
-</div>
+**Version**: 1.6.0  
+**Status**: Development / Documentation Phase  
+**Organization**: https://github.com/agentmeshcommunicationprotocol  
 
 ---
 
-## 🌟 Why AMCP?
+## 📋 Overview
 
-AMCP (Agent Mobility Communication Protocol) v1.5 isn't just another agent framework—it's a **paradigm shift** that brings enterprise-grade multi-agent systems to everyone.
+This is the **AMCP v1.6** development repository containing comprehensive documentation, implementation guides, and configuration for the major architecture evolution from v1.5 to v1.6.
 
-### 🆚 How AMCP Stands Out
+### What's New in v1.6
 
-| Feature | AMCP v1.5 | LangChain | AutoGen | CrewAI |
-|---------|-----------|-----------|---------|--------|
-| **Agent Mobility** | ✅ IBM Aglet-style strong mobility | ❌ | ❌ | ❌ |
-| **Multi-Language** | ✅ Java, Python, Rust, C# | 🟡 Python-first | 🟡 Python-first | 🟡 Python-first |
-| **Event-Driven** | ✅ Pub/Sub at core | 🟡 Chain-based | 🟡 Sequential | 🟡 Workflow-based |
-| **Enterprise Ready** | ✅ Kafka, NATS, Solace | ❌ | ❌ | ❌ |
-| **LLM Integration** | ✅ Ollama, OpenAI, Azure | ✅ | ✅ | ✅ |
-| **Protocol Bridge** | ✅ A2A, CloudEvents | ❌ | ❌ | ❌ |
-| **Kubernetes Native** | ✅ Helm, Istio ready | 🟡 Basic | 🟡 Basic | 🟡 Basic |
+- 🚀 **Strong Mobility Framework** - Automatic state preservation for agent migration
+- 🔗 **CloudEvents Integration** - Industry-standard event format (v1.0 compliance)
+- 🛡️ **Enterprise Security** - mTLS, RBAC, audit logging, Vault integration
+- ⚡ **Enhanced LLM Orchestration** - 95% faster responses, intelligent fallback
+- 🔄 **Advanced Agent Mesh** - Dynamic discovery, load balancing, circuit breaker
+- 👨‍💻 **Developer Experience** - Enhanced CLI v2, visual designer, profiler
 
-### 🎯 Perfect For
+---
 
-- **Startups** building next-gen AI products
-- **Developers** creating distributed AI systems
-- **Enterprises** scaling agent deployments
-- **Researchers** exploring multi-agent coordination
-- **Teams** migrating from monolithic AI to distributed agents
+## 📁 Repository Structure
+
+```
+amcp-v1.6-opensource/
+├── .git/                           # Git repository
+├── .github/                        # GitHub workflows and templates
+│   ├── workflows/
+│   │   ├── organization-release.yml
+│   │   ├── release.yml
+│   │   └── ci.yml
+│   └── pull_request_template.md
+│
+├── docs/                           # Documentation
+│   ├── AMCP_V1.6_ARCHITECTURE.md
+│   ├── MIGRATION_V1.5_TO_V1.6.md
+│   └── specs/
+│       └── Quarkus AMCP Extension.md
+│
+├── scripts/                        # Automation scripts
+│   └── setup-organization-release.sh
+│
+├── Implementation Guides/          # Step-by-step guides
+│   ├── AMCP_V1.6_MASTER_IMPLEMENTATION_GUIDE.md
+│   ├── AMCP_V1.6_IMPLEMENTATION_ROADMAP.md
+│   ├── WINDSURF_IMPLEMENTATION_GUIDE.md
+│   ├── V1.6_IMPLEMENTATION_STEPS.md
+│   └── V1.6_QUICK_START.md
+│
+├── Release Documentation/          # Release management
+│   ├── AMCP_V1.6_RELEASE_GUIDE.md
+│   ├── GITHUB_ORGANIZATION_RELEASE_SETUP.md
+│   ├── QUICK_RELEASE_COMMANDS.md
+│   └── ORGANIZATION_RELEASE_SUMMARY.md
+│
+├── Reference Documents/            # Quick reference
+│   ├── README_V1.6.md
+│   ├── INDEX_V1.6.md
+│   └── AMCP_V1.6_SUMMARY.md
+│
+├── CHANGELOG.md                    # Complete changelog
+├── VERSION.txt                     # Version number (1.6.0)
+└── README.md                       # This file
+```
 
 ---
 
 ## 🚀 Quick Start
 
-Get your first agent running in **under 5 minutes**:
+### For New Users
 
-### Prerequisites
-- **Java 21+** (required)
-- Maven 3.8+
-- Docker (optional, for advanced demos)
+1. **Start Here**: Read `README_V1.6.md` for overview
+2. **Architecture**: Review `docs/AMCP_V1.6_ARCHITECTURE.md`
+3. **Implementation**: Follow `AMCP_V1.6_MASTER_IMPLEMENTATION_GUIDE.md`
 
-### Platform-Specific Setup
+### For Developers
 
-#### 🐧 Linux
-```bash
-git clone https://github.com/xaviercallens/amcp-v1.5-opensource.git
-cd amcp-v1.5-opensource
-./setup-linux.sh  # Automated setup for all major Linux distros
-source ~/.bashrc
-mvn clean install -DskipTests
-./amcp-cli --build
-```
-**📖 See [LINUX_DEPLOYMENT.md](LINUX_DEPLOYMENT.md) for detailed Linux instructions**
+1. **Implementation Roadmap**: `AMCP_V1.6_IMPLEMENTATION_ROADMAP.md`
+2. **Windsurf Commands**: `WINDSURF_IMPLEMENTATION_GUIDE.md`
+3. **Step-by-Step**: `V1.6_IMPLEMENTATION_STEPS.md`
 
-#### 🍎 macOS
-```bash
-git clone https://github.com/xaviercallens/amcp-v1.5-opensource.git
-cd amcp-v1.5-opensource
-./get-started.sh  # Or ./setup-java21.sh for Java setup only
-```
+### For Release Managers
 
-### Your First Agent
-
-```java
-// HelloWorldAgent.java
-public class HelloWorldAgent extends AbstractMobileAgent {
-    @Override
-    public void onActivate() {
-        super.onActivate();
-        subscribe("hello.**");
-        logMessage("🌍 HelloWorld Agent is alive!");
-    }
-    
-    @Override
-    public CompletableFuture<Void> handleEvent(Event event) {
-        return CompletableFuture.runAsync(() -> {
-            if (event.getTopic().equals("hello.request")) {
-                String message = event.getPayload(String.class);
-                logMessage("📨 Received: " + message);
-                
-                // Respond to the sender
-                publishEvent("hello.response", "Hello, " + message + "!");
-            }
-        });
-    }
-}
-```
-
-**Run it:**
-```bash
-mvn compile exec:java -Dexec.mainClass="HelloWorldAgent"
-```
-
-That's it! Your agent is now part of a distributed mesh, ready to communicate with other agents across the network.
+1. **Release Setup**: `GITHUB_ORGANIZATION_RELEASE_SETUP.md`
+2. **Quick Commands**: `QUICK_RELEASE_COMMANDS.md`
+3. **Release Guide**: `AMCP_V1.6_RELEASE_GUIDE.md`
 
 ---
 
-## 🏗️ Architecture
+## 📚 Documentation Index
 
-AMCP v1.5 implements a **revolutionary agent mobility model** inspired by IBM Aglets, enhanced with modern cloud-native patterns:
+### Core Documentation
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    AMCP Agent Mesh                           │
-├─────────────────┬─────────────────┬─────────────────────────┤
-│   Agent Layer   │  Protocol Layer │    Transport Layer      │
-│                 │                 │                         │
-│ ┌─────────────┐ │ ┌─────────────┐ │ ┌─────────────────────┐ │
-│ │WeatherAgent │ │ │ CloudEvents │ │ │   Kafka/NATS/       │ │
-│ │TravelAgent  │ │ │   Events    │ │ │   Solace/Memory     │ │
-│ │OrchestrAtor │ │ │ A2A Bridge  │ │ │                     │ │
-│ └─────────────┘ │ └─────────────┘ │ └─────────────────────┘ │
-└─────────────────┴─────────────────┴─────────────────────────┘
-```
+| Document | Purpose | Audience |
+|----------|---------|----------|
+| `README_V1.6.md` | Quick overview | Everyone |
+| `INDEX_V1.6.md` | Complete index | Everyone |
+| `AMCP_V1.6_SUMMARY.md` | Executive summary | Managers |
+| `CHANGELOG.md` | All changes | Everyone |
 
-### Core Innovation: **Strong Mobility**
+### Implementation Guides
 
-Unlike traditional frameworks, AMCP agents can **physically move** between contexts:
+| Document | Purpose | Time Required |
+|----------|---------|---------------|
+| `AMCP_V1.6_MASTER_IMPLEMENTATION_GUIDE.md` | Complete guide | Study: 2h |
+| `AMCP_V1.6_IMPLEMENTATION_ROADMAP.md` | 19-week roadmap | 19 weeks |
+| `WINDSURF_IMPLEMENTATION_GUIDE.md` | Windsurf commands | Execute: varies |
+| `V1.6_IMPLEMENTATION_STEPS.md` | Git workflow | Execute: 1h |
+| `V1.6_QUICK_START.md` | Quick reference | Read: 10min |
 
-```java
-// Agent migrates from cloud to edge device
-agent.dispatch("edge-device-paris")
-     .thenRun(() -> logMessage("Now running on Paris edge!"));
+### Architecture & Design
 
-// Clone for high availability
-agent.clone("backup-datacenter")
-     .thenRun(() -> logMessage("Backup created!"));
-```
+| Document | Purpose |
+|----------|---------|
+| `docs/AMCP_V1.6_ARCHITECTURE.md` | Detailed architecture (12 sections) |
+| `docs/MIGRATION_V1.5_TO_V1.6.md` | Migration guide (10 steps) |
+| `docs/specs/Quarkus AMCP Extension.md` | Quarkus extension specification |
 
-### Event-Driven at Core
+### Release Management
 
-Every interaction is an **event**, enabling:
-- **Loose coupling** between agents
-- **Scalable pub/sub** patterns  
-- **Protocol interoperability**
-- **Async-first** design
+| Document | Purpose |
+|----------|---------|
+| `AMCP_V1.6_RELEASE_GUIDE.md` | Complete release process |
+| `GITHUB_ORGANIZATION_RELEASE_SETUP.md` | Organization release setup |
+| `QUICK_RELEASE_COMMANDS.md` | Copy-paste commands |
+| `ORGANIZATION_RELEASE_SUMMARY.md` | Configuration summary |
 
 ---
 
-## 🎯 Examples & Demos
+## 🎯 Implementation Paths
 
-### 🌤️ Real-Time Weather Agent
-```bash
-./scripts/demos/run-weather-demo.sh
-```
-Connects to OpenWeatherMap, monitors 5 cities, publishes weather events
+### Path 1: Proof of Concept (4 weeks)
+→ Fastest path to working demo
 
-### 🤖 LLM-Powered Chat Agent  
-```bash
-./scripts/demos/run-meshchat-demo.sh
-```
-**TinyLlama integration** - conversational AI agent with memory
+1. Phase 0: Foundation (Week 1-2)
+2. Phase 1: Core Refactoring (Week 3)
+3. Phase 2: Basic Quarkus Extension (Week 4)
 
-### 🎼 Multi-Agent Orchestration
-```bash
-./scripts/demos/run-orchestrator-demo.sh
-```
-**Smart routing** - LLM analyzes requests and routes to appropriate specialized agents
+### Path 2: MVP (8 weeks)
+→ Production-ready basic version
 
-### 🎮 Interactive Demo Launcher
-```bash
-./amcp-demos.sh
-```
-**Guided experience** with 4 learning tracks from beginner to power user
+1. Foundation + Core + Quarkus (Week 1-7)
+2. HelloWorld Example + Testing (Week 8)
+
+### Path 3: Full Implementation (19 weeks)
+→ Complete AMCP v1.6 with all features
+
+1. All 8 phases from roadmap
+2. Comprehensive testing and validation
 
 ---
 
-## ⚡ Performance & Scale
+## 🔗 Git Configuration
 
-### Benchmarks (Java 21, 8-core, 16GB RAM)
+### Remotes
 
-| Metric | Local (Memory) | Kafka Cluster | NATS Cluster |
-|--------|---------------|---------------|--------------|
-| **Throughput** | 50K+ events/sec | 25K+ events/sec | 35K+ events/sec |
-| **Latency (P99)** | <1ms | <5ms | <3ms |
-| **Agent Startup** | <100ms | <200ms | <150ms |
-| **Migration Time** | <50ms | <500ms | <300ms |
+This repository is configured for dual-remote workflow:
 
-### Real Production Scale
-- ✅ **1000+ agents** per context tested
-- ✅ **Multi-region** deployments on AWS/Azure/GCP
-- ✅ **Kubernetes** autoscaling with HPA
-- ✅ **Zero-downtime** agent migrations
+```bash
+origin      → Personal: https://github.com/xaviercallens/amcp-v1.5-opensource.git
+amcpcore    → Organization: https://github.com/agentmeshcommunicationprotocol/amcpcore.github.io.git
+```
+
+### Current Branch Strategy
+
+- `main` - Stable v1.5 codebase
+- `release/v1.6.0` - v1.6 release preparation
+- `feature/*` - Feature development branches
+
+### Setup Commands
+
+```bash
+# Clone this repository
+cd /home/kalxav/CascadeProjects/amcp-v1.6-opensource
+
+# Verify remotes
+git remote -v
+
+# Fetch all
+git fetch --all
+
+# Check out release branch
+git checkout -b release/v1.6.0
+```
 
 ---
 
-## 🔧 Integration Ecosystem
+## 🛠️ Getting Started
 
-### 🧠 LLM Platforms
-```java
-// Ollama (Local LLMs)
-aiConnector.generateResponse("Analyze this data", "tinyllama");
-
-// OpenAI integration  
-openAIAgent.processQuery("What's the weather in Tokyo?");
-
-// Azure OpenAI
-azureAgent.enhanceResponse(userQuery, context);
+### Option 1: Automated Setup
+```bash
+# Run setup script
+./scripts/setup-organization-release.sh
 ```
 
-### 📨 Message Brokers
-```properties
-# Kafka for enterprise scale
-amcp.event.broker.type=kafka
-amcp.kafka.bootstrap.servers=kafka-cluster:9092
+### Option 2: Manual Setup
+```bash
+# 1. Read documentation
+cat README_V1.6.md
 
-# NATS for cloud-native
-amcp.event.broker.type=nats
-amcp.nats.servers=nats://nats-cluster:4222
+# 2. Check version
+cat VERSION.txt
 
-# Solace for financial services  
-amcp.event.broker.type=solace
-amcp.solace.host=solace.company.com
+# 3. Review implementation guide
+cat AMCP_V1.6_MASTER_IMPLEMENTATION_GUIDE.md
+
+# 4. Start implementation
+# Follow WINDSURF_IMPLEMENTATION_GUIDE.md
 ```
-
-### 🌐 Protocol Bridges
-- **Google A2A** - Bidirectional compatibility
-- **CloudEvents 1.0** - Azure Event Grid, AWS EventBridge
-- **MCP (Model Context Protocol)** - Tool integration standard
 
 ---
 
-## 🐳 Deployment Options
+## 📊 Project Status
 
-### Local Development
-```bash
-# In-memory broker (fastest)
-./get-started.sh
-```
-
-### Docker Compose
-```bash
-cd deploy/docker
-docker-compose up -d
-# Includes: Kafka, Prometheus, Grafana, AMCP contexts
-```
-
-### Kubernetes (Production)
-```bash
-helm repo add amcp https://charts.amcp.io
-helm install amcp-mesh amcp/amcp-platform \
-  --set broker.type=kafka \
-  --set monitoring.enabled=true
-```
-
-### Cloud Platforms
-- **AWS EKS** - CloudFormation templates included
-- **Azure AKS** - ARM templates + Service Bus integration  
-- **Google GKE** - Deployment manifests + Pub/Sub connector
+| Component | Status | Notes |
+|-----------|--------|-------|
+| **Documentation** | ✅ Complete | All guides created |
+| **Architecture** | ✅ Complete | Detailed specs ready |
+| **Implementation** | 📝 Planning | Roadmap defined |
+| **Testing** | 📋 Planned | Framework designed |
+| **Release** | ⏳ Pending | Configuration ready |
 
 ---
 
-## 📚 Documentation
+## 🎯 Major Features (v1.6)
 
-### 🎓 Learning Path
-1. **[Quick Start Guide](docs/guides/QUICK_START.md)** - 5-minute setup
-2. **[Developer Guide](docs/guides/DEVELOPER_GUIDE.md)** - Build your first agent
-3. **[Architecture Guide](docs/guides/ARCHITECTURE.md)** - Deep technical dive
-4. **[API Reference](docs/guides/API_REFERENCE.md)** - Complete method documentation
+### Strong Mobility Framework
+- Automatic state preservation
+- ATP (Agent Transfer Protocol)
+- Bytecode instrumentation
+- 70-80% code reduction
 
-### 📖 Specialized Guides
-- **[LLM Integration](docs/guides/LLM_INTEGRATION.md)** - Ollama, OpenAI, Azure
-- **[Deployment Guide](docs/guides/DEPLOYMENT.md)** - K8s, Docker, Cloud  
-- **[Security Guide](docs/guides/SECURITY.md)** - Authentication, authorization
-- **[Migration Guide](docs/guides/MIGRATION.md)** - Agent mobility patterns
+### CloudEvents Integration
+- CloudEvents v1.0 compliant
+- Event routing & filtering
+- Distributed tracing
+- Event sourcing
+
+### Enterprise Security
+- mTLS support
+- RBAC implementation
+- Comprehensive audit logging
+- HashiCorp Vault integration
+
+### Enhanced LLM Orchestration
+- 95% faster cached responses (50ms vs 500ms)
+- Intelligent fallback system
+- Two-tier caching
+- 60% reduced memory usage
+
+### Advanced Agent Mesh
+- Dynamic service discovery
+- Load balancing
+- Circuit breaker pattern
+- Service mesh integration (Istio, Linkerd)
+
+### Developer Experience
+- Enhanced CLI v2
+- Visual agent designer
+- Performance profiler
+- Comprehensive testing framework
+
+---
+
+## 📈 Performance Targets
+
+| Metric | v1.5 | v1.6 Target | Improvement |
+|--------|------|-------------|-------------|
+| Cached Response | 500ms | 50ms | **10x faster** |
+| Memory Usage | 2.5GB | 1GB | **60% reduction** |
+| Concurrent Requests | 1 | 10 | **10x capacity** |
+| Fallback Response | N/A | <50ms | **New feature** |
+
+---
+
+## 🔄 Breaking Changes
+
+- Agent interface: `Agent` → `StrongMobilityAgent`
+- Event model: Custom → CloudEvents standard
+- Configuration: Old schema → New security-aware schema
+- LLM API: Basic → Enhanced with fallback
+
+**Migration Guide**: See `docs/MIGRATION_V1.5_TO_V1.6.md`
+
+---
+
+## 🚢 Release Process
+
+### Quick Release
+```bash
+# 1. Run setup
+./scripts/setup-organization-release.sh
+
+# 2. Create PR
+gh pr create --repo agentmeshcommunicationprotocol/amcpcore.github.io \
+  --base main --head release/v1.6.0
+
+# 3. After merge, create tag
+git tag -a v1.6.0 -m "AMCP v1.6.0"
+git push amcpcore v1.6.0
+```
+
+**Detailed Guide**: `GITHUB_ORGANIZATION_RELEASE_SETUP.md`
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions from **developers**, **startups**, and **enterprises**!
-
-### 🎯 Contribution Areas
-
-| Area | Skill Level | Impact |
-|------|-------------|--------|
-| **Language SDKs** | Intermediate | 🔥 High - Enable new ecosystems |
-| **Broker Connectors** | Advanced | 🔥 High - Enterprise adoption |
-| **Example Agents** | Beginner | 🟡 Medium - Community growth |
-| **Documentation** | All levels | 🟡 Medium - Developer experience |
-| **Performance** | Expert | 🔥 High - Production readiness |
-
-### 🚀 Quick Contribution
-```bash
-# 1. Fork the repo
-git clone https://github.com/your-username/amcp-v1.5-opensource.git
-
-# 2. Create feature branch
-git checkout -b feature/my-awesome-agent
-
-# 3. Develop & test
-mvn clean compile test
-./scripts/demos/run-test-demo.sh
-
-# 4. Submit PR with tests
-```
-
-### 📋 Development Setup
-```bash
-# Install development tools
-./scripts/setup-dev-environment.sh
-
-# Run full test suite
-mvn clean test -P quality -P integration
-
-# Check code quality
-mvn spotbugs:check checkstyle:check pmd:check
-```
-
-### 🏆 Recognition
-- **Contributors** get credited in releases
-- **Major contributors** get maintainer status
-- **Corporate contributors** get enterprise support priority
+This is currently in the documentation and planning phase. Implementation contributions will follow the roadmap in `AMCP_V1.6_IMPLEMENTATION_ROADMAP.md`.
 
 ---
 
-## 🎯 Use Cases
+## 📞 Support & Resources
 
-### 🏢 Enterprise Scenarios
-- **Financial Services**: Risk analysis agents with regulatory compliance
-- **Healthcare**: Patient data processing with HIPAA-compliant mobility
-- **Manufacturing**: IoT sensor agents migrating to edge for real-time control
-- **Retail**: Inventory optimization agents across store networks
-
-### 🚀 Startup Innovation
-- **AI-First SaaS**: Multi-tenant agent platforms
-- **EdTech**: Personalized learning agents that adapt to students
-- **FinTech**: Trading strategy agents with real-time market data
-- **HealthTech**: Diagnostic agents collaborating across medical specialties
-
-### 🔬 Research Applications
-- **Multi-Agent Reinforcement Learning** at scale
-- **Distributed AI** algorithm validation
-- **Agent coordination** protocol research
-- **Emergent behavior** studies in large agent populations
+- **Organization**: https://github.com/agentmeshcommunicationprotocol
+- **Repository**: https://github.com/agentmeshcommunicationprotocol/amcpcore.github.io
+- **Documentation**: All guides in this repository
+- **Issues**: GitHub Issues (once implementation begins)
 
 ---
 
-## 🛣️ Roadmap
+## 📜 License
 
-### 🎯 v1.5 (Current) - Developer Experience
-- ✅ Multi-language SDKs (Python, Rust, C#)
-- ✅ LangChain/Semantic Kernel integration
-- ✅ Enhanced CLI tools and dashboard
-- ✅ CloudEvents 1.0 compliance
-
-### 🚀 v1.6 (Q2 2024) - Enterprise Features  
-- 🔄 Advanced security policies and governance
-- 🔄 Kubernetes operator for auto-scaling
-- 🔄 Enhanced monitoring and alerting
-- 🔄 Service mesh integration (Istio, Linkerd)
-
-### 🌟 v2.0 (Q4 2024) - Cloud Platform
-- 🔄 AMCP Cloud SaaS platform
-- 🔄 Visual agent workflow designer
-- 🔄 Marketplace for community agents
-- 🔄 Enterprise admin console
+Apache 2.0 (to be confirmed in implementation phase)
 
 ---
 
-## 💬 Community & Support
+## 🎉 Next Steps
 
-### 🌐 Get Connected
-- **GitHub Discussions**: [Ask questions, share projects](https://github.com/xaviercallens/amcp-v1.5-opensource/discussions)
-- **Discord Server**: [Real-time community chat](https://discord.gg/amcp)
-- **Stack Overflow**: Tag your questions with `amcp`
-- **LinkedIn**: Follow [@AMCPFramework](https://linkedin.com/company/amcp)
-
-### 📧 Enterprise Inquiries
-- **Email**: enterprise@amcp.io
-- **Schedule Call**: [calendly.com/amcp-enterprise](https://calendly.com/amcp-enterprise)
-
-### 🐛 Bug Reports & Feature Requests
-- **Issues**: [GitHub Issues](https://github.com/xaviercallens/amcp-v1.5-opensource/issues)
-- **Security**: security@amcp.io (GPG key available)
+1. **Read**: `README_V1.6.md` for quick overview
+2. **Study**: `AMCP_V1.6_MASTER_IMPLEMENTATION_GUIDE.md` for complete picture
+3. **Choose**: Implementation path (PoC, MVP, or Full)
+4. **Execute**: Follow chosen guide
+5. **Release**: Use release management docs
 
 ---
 
-## 📜 License & Legal
-
-**MIT License** - Use AMCP freely in commercial and open source projects.
-
-```
-Copyright (c) 2024 AMCP Contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software...
-```
-
-**Patent Promise**: We commit to not assert patents against open source implementations of AMCP.
+**Repository Created**: 2024-11-10  
+**Version**: 1.6.0  
+**Status**: Documentation & Planning Phase  
+**Ready For**: Implementation
 
 ---
 
-## 🙏 Acknowledgments
-
-AMCP v1.5 builds on decades of research and engineering:
-
-- **IBM Aglets** - Pioneer of mobile agent systems
-- **Google A2A** - Modern agent communication protocols  
-- **CloudEvents CNCF** - Event standardization
-- **Spring Framework** - Enterprise Java patterns
-- **Kubernetes Community** - Cloud-native orchestration
-
-Special thanks to our **enterprise partners**, **open source contributors**, and the broader **multi-agent systems research community**.
-
----
-
-<div align="center">
-
-**Ready to build the future of AI?**
-
-[🚀 Start Building](./get-started.sh) • [📖 Read Docs](docs/) • [💬 Join Community](https://discord.gg/amcp)
-
----
-
-*Made with ❤️ by the AMCP community*
-
-[![GitHub stars](https://img.shields.io/github/stars/xaviercallens/amcp-v1.5-opensource?style=social)](https://github.com/xaviercallens/amcp-v1.5-opensource/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/xaviercallens/amcp-v1.5-opensource?style=social)](https://github.com/xaviercallens/amcp-v1.5-opensource/network)
-
-</div>
+Built with ❤️ for the future of Agent Mesh Communication
